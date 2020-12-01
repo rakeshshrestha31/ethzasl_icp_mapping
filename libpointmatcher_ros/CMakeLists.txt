@@ -30,7 +30,7 @@ libpointmatcher
 
 
 # c++ 0x
-#if("${CMAKE_CXX_COMPILER_ID}" MATCHES "clang") 
+#if("${CMAKE_CXX_COMPILER_ID}" MATCHES "clang")
 #	set(CMAKE_COMPILER_IS_CLANGXX)
 #endif ("${CMAKE_CXX_COMPILER_ID}" MATCHES "clang")
 if(CMAKE_COMPILER_IS_GNUCXX)
@@ -59,3 +59,18 @@ include_directories(include)
 add_library(pointmatcher_ros src/point_cloud.cpp src/transform.cpp)
 include_directories(${catkin_INCLUDE_DIRS} ${libpointmatcher_INCLUDE_DIRS})
 target_link_libraries(pointmatcher_ros ${catkin_LIBRARIES} ${libpointmatcher_LIBRARIES})
+
+## Mark libraries for installation
+## See http://docs.ros.org/melodic/api/catkin/html/howto/format1/building_libraries.html
+install(TARGETS pointmatcher_ros
+  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION}
+)
+
+## Mark cpp header files for installation
+install(DIRECTORY include/pointmatcher_ros/
+  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+  FILES_MATCHING PATTERN "*.h"
+  PATTERN ".svn" EXCLUDE
+)
