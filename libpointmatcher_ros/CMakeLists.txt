@@ -70,7 +70,7 @@ install(TARGETS pointmatcher_ros
 
 ## Mark cpp header files for installation
 install(DIRECTORY include/pointmatcher_ros/
-  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}/../pointmatcher_ros
   FILES_MATCHING PATTERN "*.h"
   PATTERN ".svn" EXCLUDE
 )
